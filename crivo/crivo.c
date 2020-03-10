@@ -11,13 +11,17 @@ Celula* init_crivo(int n){
 }
 
 void mark_prime_crivo(Celula* crivo, int n){
+    int pnm;
     for(int i = 2; i <= n/2; i++){
         if(crivo[i - 2].mark){
             continue;
         }
-        for(int j = 2; j*i <= n ; j++){
-            crivo[i*j - 2].mark = true;
+        int count = 1;
+        for(int j = crivo[i - 2].label; j <= n ; j = crivo[i - 2].label*count){
+            count++;
+            crivo[j - 2].mark = true;
         }
+        crivo[i - 2].mark = false;
     }
 }
 

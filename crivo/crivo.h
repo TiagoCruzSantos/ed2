@@ -5,7 +5,7 @@
 
 typedef struct cel{
     int label;
-    char mark;
+    bool mark;
 }Celula;
 
 Celula* init_crivo(int n);
