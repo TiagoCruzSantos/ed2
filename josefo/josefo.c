@@ -26,12 +26,52 @@ t_Sentinela* init_josefo(int n){
 
 void print_josefo(t_Sentinela* l){
     t_Celula* c = l->prim;
-    while(c->prox != NULL){
+    do{
         printf("%d\n", c->pess);
-        c = c->ant;
-    }
+        c = c->prox;
+    }while(c != l->prim);
 }
 
-void remove_josefo(t_Sentinela* l, t_Celula* ant_rm){
-    
+void remove_josefo(t_Sentinela* l, t_Celula* rm){
+    if(l->prim == l->ult){
+        free(l->prim);
+        l->prim = NULL;
+        l->ult = NULL;
+        return;
+    }
+    if(rm == l->prim){
+        l->prim = rm->prox;
+    }
+    if(rm == l->ult){
+        l->ult = l->ult->ant;
+    }
+    rm->ant->prox = rm->prox;
+    rm->prox->ant = rm->ant;
+    free(rm);
+    return;
+}
+
+int select_josefo(t_Sentinela* l, int m){
+    t_Celula* at = l->prim;
+    while(l->prim != l->ult){
+        for(int i = 0; i < m - 1; i++){
+            at = at->prox;
+        }
+        t_Celula* del = at;
+        at = at->prox;
+        remove_josefo(l, del);
+    }
+    return l->prim->pess;
+}
+
+void free_josefo(t_Sentinela* l){
+    l->ult->prox = NULL;
+    t_Celula* at = l->prim;
+    t_Celula* ant = at;
+    while(at != NULL){
+        ant = at;
+        at = at->prox;
+        free(ant);
+    }
+    free(l);
 }

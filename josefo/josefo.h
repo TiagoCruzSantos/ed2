@@ -19,6 +19,8 @@ void remove_josefo(t_Sentinela* l, t_Celula* rm);
 
 void print_josefo(t_Sentinela* l);
 
-void select_josefo(t_Sentinela* l, int m);
+int select_josefo(t_Sentinela* l, int m);
+
+void free_josefo(t_Sentinela* l);
 
 #endif
