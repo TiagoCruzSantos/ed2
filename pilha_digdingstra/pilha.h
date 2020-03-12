@@ -13,7 +13,7 @@ typedef struct sent{
 
 t_Sentinela* init_stack();
 
-void insert_stack(void* item);
+void insert_stack(t_Sentinela* l, void* item);
 
 void* remove_stack();
 
