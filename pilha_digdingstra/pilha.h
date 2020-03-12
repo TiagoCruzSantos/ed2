@@ -17,6 +17,6 @@ void insert_stack(void* item);
 
 void* remove_stack();
 
-
+void free_stack();
 
 #endif
