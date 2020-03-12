@@ -11,5 +11,12 @@ typedef struct sent{
     t_Celula* ult;
 } t_Sentinela;
 
+t_Sentinela* init_stack();
+
+void insert_stack(void* item);
+
+void* remove_stack();
+
+
 
 #endif
