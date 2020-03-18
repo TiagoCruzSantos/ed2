@@ -15,8 +15,10 @@ t_Sentinela* init_stack();
 
 void insert_stack(t_Sentinela* l, void* item);
 
-void* remove_stack();
+void* remove_stack(t_Sentinela* l);
 
-void free_stack();
+void print_stack(t_Sentinela* l);
+
+void free_stack(t_Sentinela* l);
 
 #endif
