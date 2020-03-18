@@ -81,6 +81,32 @@ void print_tree_postOrder(t_Base* l){
     print_tree_rec_postOrder(l->base);
 }
 
+int maior(int a, int b){
+    if(a > b){
+        return a;
+    }
+    return b;
+}
+
+int hight_tree_node(t_No* no){
+    int esq = 0;
+    int dir = 0;
+    if(no->dir != NULL){
+        dir = hight_tree_node(no->dir);
+    }
+    if(no->esq != NULL){
+        esq = hight_tree_node(no->esq);
+    }
+    return 1 + maior(esq, dir);
+}
+
+int hight_tree(t_Base* l){
+    if(l->base == NULL){
+        return -1;
+    }
+    return hight_tree_node(l->base) - 1;
+}
+
 void free_node(t_No* no){
     if(no->esq != NULL){
         free_node(no->esq);

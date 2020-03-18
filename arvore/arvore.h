@@ -23,6 +23,8 @@ void print_tree_preOrder(t_Base* l);
 
 void print_tree_postOrder(t_Base* l);
 
+int hight_tree(t_Base* l);
+
 void free_tree(t_Base* l);
 
 #endif

@@ -1,20 +1,19 @@
 #include "arvore.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <sys/time.h>
 
-int main(){
+int main(int argc, char *argv[]){
+    struct timeval t;
+    gettimeofday(&t, NULL);
+    srand(t.tv_usec);
     t_Base* l = init_tree();
-    insert_tree(l, 50);
-    insert_tree(l, 100);
-    insert_tree(l, 30);
-    insert_tree(l, 20);
-    insert_tree(l, 40);
-    insert_tree(l, 45);
-    insert_tree(l, 35);
-    insert_tree(l, 37);
-    print_tree_inOrder(l);
-    printf("\n");
-    print_tree_preOrder(l);
-    printf("\n");
-    print_tree_postOrder(l);
+    int n = atoi(argv[1]);
+    for(int i = 0; i < n; i++){
+        insert_tree(l, rand());
+    }
+    printf("%d\n", hight_tree(l));
+    //print_tree_inOrder(l);
     free_tree(l);
 }
