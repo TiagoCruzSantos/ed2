@@ -13,8 +13,8 @@ LIST_VALUES=""
 # $2 - qtd
 function mean(){
     local SUM=0
-    for I in $1; do
-        SUM=$(expr $SUM + $I)
+    for value in $1; do
+        SUM=$(expr $SUM + $value)
     done
     RESULT=$(echo $SUM/$2 | bc -l)
     echo $RESULT
@@ -26,8 +26,8 @@ function mean(){
 function sd(){
     local SUM=0
     local STD_UNSQRT=""
-    for I in $1; do
-        SUM=$(echo "$SUM+($I - $2)^2" | bc -l)
+    for value in $1; do
+        SUM=$(echo "$SUM+($value - $2)^2" | bc -l)
     done
     STD_UNSQRT=$(echo "$SUM/$3" | bc -l)
     STD=$(echo "sqrt($STD_UNSQRT)" | bc -l)
@@ -35,7 +35,7 @@ function sd(){
 }
 
 while [[ $I -lt $2 ]]; do
-    echo "Loop numero $I"
+    echo "Loop numero $(expr $I + 1)"
     HIGHT_AT=$(./$1 $3)
     echo "Tamanho arvore atual: $HIGHT_AT"
     LIST_VALUES="$LIST_VALUES $HIGHT_AT"
