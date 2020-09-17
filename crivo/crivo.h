@@ -1,7 +1,6 @@
 #ifndef _CRIVO_
 #define _CRIVO_
 #include <stdlib.h>
-#include <stdbool.h>
 
 typedef struct cel Celula;
 
