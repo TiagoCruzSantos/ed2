@@ -3,10 +3,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-typedef struct cel{
-    int label;
-    bool mark;
-}Celula;
+typedef struct cel Celula;
 
 Celula* init_crivo(int n);
 
