@@ -1,26 +1,16 @@
-#ifndef _JOSEFO_
-#define _JOSEFO_
+#ifndef __JOSEFO__
+#define __JOSEFO__
+#include <stdlib.h>
+#include <stdio.h>
 
-typedef struct cel{
-    int pess;
-    struct cel *prox;
-    struct cel *ant;
-    
-} t_Celula;
+typedef struct lst List;
 
-typedef struct sent{
-    t_Celula* prim;
-    t_Celula* ult;
-} t_Sentinela;
+List* init_josefo(int n);
 
-t_Sentinela* init_josefo(int n);
+int select_josefo(List* jsf, int m);
 
-void remove_josefo(t_Sentinela* l, t_Celula* rm);
+void clear_josefo(List* jsf);
 
-void print_josefo(t_Sentinela* l);
-
-int select_josefo(t_Sentinela* l, int m);
-
-void free_josefo(t_Sentinela* l);
+void print_josefo(List* jsf);
 
 #endif
