@@ -18,6 +18,6 @@ int main(int argc, char *argv[]){
         insert_tree(l, rand()%100);
     }
     printf("%d\n", hight_tree(l));
-    tree_inOrder(l, printNode);
+    //tree_inOrder(l, printNode);
     free_tree(l);
 }
