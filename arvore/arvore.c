@@ -39,46 +39,46 @@ void insert_tree(t_Base* l, int n){
     }
 }
 
-void print_tree_rec_inOrder(t_No* node){
+void tree_rec_inOrder(t_No* node, void (*visit)(t_No*)){
     if(node->esq != NULL){
-        print_tree_rec_inOrder(node->esq);
+        tree_rec_inOrder(node->esq, visit);
     }
-    printf("%d\n", node->a);
+    visit(node);
     if(node->dir != NULL){
-        print_tree_rec_inOrder(node->dir);
+        tree_rec_inOrder(node->dir, visit);
     }
 }
 
-void print_tree_rec_preOrder(t_No* node){
-    printf("%d\n", node->a);
+void tree_rec_preOrder(t_No* node, void (*visit)(t_No*)){
+    visit(node);
     if(node->esq != NULL){
-        print_tree_rec_preOrder(node->esq);
-    }
-    if(node->dir != NULL){
-        print_tree_rec_preOrder(node->dir);
-    }
-}
-
-void print_tree_rec_postOrder(t_No* node){
-    if(node->esq != NULL){
-        print_tree_rec_postOrder(node->esq);
+        tree_rec_preOrder(node->esq, visit);
     }
     if(node->dir != NULL){
-        print_tree_rec_postOrder(node->dir);
+        tree_rec_preOrder(node->dir, visit);
     }
-    printf("%d\n", node->a);
 }
 
-void print_tree_inOrder(t_Base* l){
-    print_tree_rec_inOrder(l->base);
+void tree_rec_postOrder(t_No* node, void (*visit)(t_No*)){
+    if(node->esq != NULL){
+        tree_rec_postOrder(node->esq, visit);
+    }
+    if(node->dir != NULL){
+        tree_rec_postOrder(node->dir, visit);
+    }
+    visit(node);
 }
 
-void print_tree_preOrder(t_Base* l){
-    print_tree_rec_preOrder(l->base);
+void tree_inOrder(t_Base* l, void (*visit)(t_No*)){
+    tree_rec_inOrder(l->base, visit);
 }
 
-void print_tree_postOrder(t_Base* l){
-    print_tree_rec_postOrder(l->base);
+void tree_preOrder(t_Base* l, void (*visit)(t_No*)){
+    tree_rec_preOrder(l->base, visit);
+}
+
+void tree_postOrder(t_Base* l, void (*visit)(t_No*)){
+    tree_rec_postOrder(l->base, visit);
 }
 
 int maior(int a, int b){

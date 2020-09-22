@@ -4,6 +4,10 @@
 #include <time.h>
 #include <sys/time.h>
 
+void printNode(t_No* node){
+    printf("%d\n",node->a);
+}
+
 int main(int argc, char *argv[]){
     struct timeval t;
     gettimeofday(&t, NULL);
@@ -11,9 +15,9 @@ int main(int argc, char *argv[]){
     t_Base* l = init_tree();
     int n = atoi(argv[1]);
     for(int i = 0; i < n; i++){
-        insert_tree(l, rand());
+        insert_tree(l, rand()%100);
     }
     printf("%d\n", hight_tree(l));
-    //print_tree_inOrder(l);
+    tree_inOrder(l, printNode);
     free_tree(l);
 }
