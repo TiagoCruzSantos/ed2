@@ -1,5 +1,4 @@
 #include "item.h"
-#include <stdio.h>
 
 void sort(Item *a, int lo, int hi){
     for(int i = lo + 1; i <= hi; i++){
