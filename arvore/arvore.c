@@ -121,3 +121,35 @@ void free_tree(t_Base* l){
     free_node(l->base);
     free(l);
 }
+
+void print_tree_nonrecursive_inOrder(t_Base* l){
+    t_Sentinela* pilha = init_stack();
+    t_No* node = l->base;
+    if(node != NULL){
+        insert_stack(pilha, node);
+    }
+    while (pilha->prim != NULL){
+        node = remove_stack(pilha);
+        if(node->esq != NULL){
+            insert_stack(pilha, node);
+            insert_stack(pilha, node->esq);
+            continue;
+        }else if(node->dir != NULL){
+            printf("%d\n", node->a);
+            insert_stack(pilha, node->dir);
+            continue;
+        }else{
+            printf("%d\n", node->a);
+            continue;
+        }
+    }
+    free_stack(pilha);
+}
+
+void print_tree_nonrecursive_preOrder(t_Base* l){
+
+}
+
+void print_tree_nonrecursive_postOrder(t_Base* l){
+
+}

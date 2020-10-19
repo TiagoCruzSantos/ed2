@@ -1,6 +1,6 @@
 #ifndef _ARVORE_
 #define _ARVORE_
-
+#include "pilha.h"
 typedef struct n{
     int a;
     struct n* esq;
@@ -22,6 +22,12 @@ void print_tree_inOrder(t_Base* l);
 void print_tree_preOrder(t_Base* l);
 
 void print_tree_postOrder(t_Base* l);
+
+void print_tree_nonrecursive_inOrder(t_Base* l);
+
+void print_tree_nonrecursive_preOrder(t_Base* l);
+
+void print_tree_nonrecursive_postOrder(t_Base* l);
 
 int hight_tree(t_Base* l);
 
