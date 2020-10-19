@@ -1,14 +1,15 @@
 #include "crivo.h"
 #include <stdio.h>
+#include <stdbool.h>
 
 typedef struct cel{
-    int mark;
+    bool mark;
 }Celula;
 
 Celula* init_crivo(int n){
     Celula* lista = malloc(sizeof(Celula) * (n - 1));
     for(int i = 2; i <= n; i++){
-        lista[i - 2].mark = 0;
+        lista[i - 2].mark = false;
     }
     return lista;
 }
@@ -21,9 +22,9 @@ void mark_prime_crivo(Celula* crivo, int n){
         int count = 1;
         for(int j = i; j <= n ; j = i*count){
             count++;
-            crivo[j - 2].mark = 1;
+            crivo[j - 2].mark = true;
         }
-        crivo[i - 2].mark = 0;
+        crivo[i - 2].mark = false;
     }
 }
 

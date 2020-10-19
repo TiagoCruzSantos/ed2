@@ -9,13 +9,11 @@ int main(int argc, char *argv[]){
     t_Sentinela* operadores = init_stack();
     for(int i = 1; i < argc; i++){
         switch (argv[i][0]){
-            case ')': ; //statement vazio pq n pode ter declaração imediatamente apos case aparentemente
+            case ')': ;
                 double* result = malloc(sizeof(double));
                 double* num1 = remove_stack(numeros);
                 double* num2 = remove_stack(numeros);
                 char* oper = remove_stack(operadores);
-
-                //printf("%f %c %f\n", *num1, *oper, *num2);
 
                 switch (*oper){
                     case '+':

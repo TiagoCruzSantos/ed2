@@ -17,11 +17,11 @@ t_No* init_node(int n);
 
 void insert_tree(t_Base* l, int n);
 
-void print_tree_inOrder(t_Base* l);
+void tree_inOrder(t_Base* l, void (*visit)(t_No*));
 
-void print_tree_preOrder(t_Base* l);
+void tree_preOrder(t_Base* l, void (*visit)(t_No*));
 
-void print_tree_postOrder(t_Base* l);
+void tree_postOrder(t_Base* l, void (*visit)(t_No*));
 
 void print_tree_nonrecursive_inOrder(t_Base* l);
 

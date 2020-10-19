@@ -1,10 +1,12 @@
-#include "josefo.h"
 #include <stdio.h>
-int main(){
-    t_Sentinela* josefo = init_josefo(9);
-    print_josefo(josefo);
-    printf("\n");
-    select_josefo(josefo, 5);
-    print_josefo(josefo);
-    free_josefo(josefo);
+#include <stdlib.h>
+#include "josefo.h"
+
+int main(int argc, char** argv){
+    int N = atoi(argv[1]);
+    int M = atoi(argv[2]);
+    List* jsf = init_josefo(N);
+    select_josefo(jsf, M);
+    //printf("%d\n", select_josefo(jsf, M));
+    clear_josefo(jsf);
 }

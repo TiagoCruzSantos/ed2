@@ -1,77 +1,72 @@
 #include "josefo.h"
-#include <stdlib.h>
-#include <stdio.h>
 
-t_Sentinela* init_josefo(int n){
-    t_Sentinela* l = malloc(sizeof(t_Sentinela));
-    l->prim = NULL;
-    l->ult = NULL;
-    t_Celula* c;
-    t_Celula* ant;
-    c = malloc(sizeof(t_Celula));
-    c->pess = 1;
-    l->prim = c;
+typedef struct cell{
+    int person;
+    struct cell* prev;
+    struct cell* next;
+} Cell;
+typedef struct lst{
+    Cell* frs;
+} List;
+
+List* init_josefo(int n){
+    List* list = malloc(sizeof(List));
+    Cell* ps = malloc(sizeof(Cell)); 
+    ps->person = 1;
+    list->frs = ps;
+    Cell* ant = ps;
     for(int i = 1; i < n; i++){
-        c->prox = malloc(sizeof(t_Celula));
-        ant = c;
-        c = c->prox;
-        c->pess = i+1;
-        c->ant = ant;
+        Cell* pso = malloc(sizeof(Cell));
+        pso->person = i + 1;
+        pso->prev = ant;
+        ant->next = pso;
+        ant = pso;
     }
-    l->ult = c;
-    c->prox = l->prim;
-    l->prim->ant = c;
-    return l;
+    ant->next = ps;
+    ps->prev = ant;
+    return list;
 }
 
-void print_josefo(t_Sentinela* l){
-    t_Celula* c = l->prim;
-    do{
-        printf("%d\n", c->pess);
-        c = c->prox;
-    }while(c != l->prim);
+void remove_cell(List* jsf, Cell* cell){
+    cell->prev->next = cell->next;
+    cell->next->prev = cell->prev;
+    if(cell == jsf->frs){
+        jsf->frs = cell->next;
+    }
+    if(cell->prev == cell){
+        jsf->frs = NULL;
+    }
+    free(cell);
 }
 
-void remove_josefo(t_Sentinela* l, t_Celula* rm){
-    if(l->prim == l->ult){
-        free(l->prim);
-        l->prim = NULL;
-        l->ult = NULL;
-        return;
-    }
-    if(rm == l->prim){
-        l->prim = rm->prox;
-    }
-    if(rm == l->ult){
-        l->ult = l->ult->ant;
-    }
-    rm->ant->prox = rm->prox;
-    rm->prox->ant = rm->ant;
-    free(rm);
-    return;
-}
-
-int select_josefo(t_Sentinela* l, int m){
-    t_Celula* at = l->prim;
-    while(l->prim != l->ult){
+int select_josefo(List* jsf, int m){
+    Cell* select = jsf->frs;
+    while(jsf->frs->next != jsf->frs){
         for(int i = 0; i < m - 1; i++){
-            at = at->prox;
+            select = select->next;
         }
-        t_Celula* del = at;
-        at = at->prox;
-        remove_josefo(l, del);
+        Cell* save = select->next;
+        remove_cell(jsf, select);
+        select = save;
     }
-    return l->prim->pess;
+    return select->person;
 }
 
-void free_josefo(t_Sentinela* l){
-    l->ult->prox = NULL;
-    t_Celula* at = l->prim;
-    t_Celula* ant = at;
-    while(at != NULL){
-        ant = at;
-        at = at->prox;
-        free(ant);
-    }
-    free(l);
+void clear_josefo(List* jsf){
+    Cell* clear = jsf->frs;
+    Cell* nxt = jsf->frs;
+    do{
+        nxt = clear->next;
+        remove_cell(jsf, clear);
+        clear = nxt;
+    }while(jsf->frs != NULL);
+    free(jsf);
+}
+
+void print_josefo(List* lst){
+    Cell* prt = lst->frs;
+    do{
+        printf("%d\n", prt->person);
+        prt = prt->next;
+    }while(prt != lst->frs);
 }
